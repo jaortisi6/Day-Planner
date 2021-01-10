@@ -3,7 +3,7 @@
 
 # Screenshot
 
-![Day Planner Screenshot](C:\Users\jaort\Desktop\Bootcamp\Homework\Day-Planner\Day Planner Screenshot.PNG)
+[Day Planner](Day Planner Screenshot.PNG)
 
 # Description
 
