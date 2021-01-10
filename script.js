@@ -1,85 +1,73 @@
-// current day displayed in header using id=currentDay.
+// Sets items from local storage as variables
+let textVal9 = localStorage.getItem("hr-9");
+let textVal10 = localStorage.getItem("hr-10");
+let textVal11 = localStorage.getItem("hr-11");
+let textVal12 = localStorage.getItem("hr-12");
+let textVal1 = localStorage.getItem("hr-1");
+let textVal2 = localStorage.getItem("hr-2");
+let textVal3 = localStorage.getItem("hr-3");
+let textVal4 = localStorage.getItem("hr-4");
+let textVal5 = localStorage.getItem("hr-5");
 
-// each time block is color coded to show if it is past(grey), present(red),future(green).
+// Assigns IDs to the variables declared above
+let text9 = $("#hr-9");
+let text10 = $("#hr-10");
+let text11 = $("#hr-11");
+let text12 = $("#hr-12");
+let text1 = $("#hr-1");
+let text2 = $("#hr-2");
+let text3 = $("#hr-3");
+let text4 = $("#hr-4");
+let text5 = $("#hr-5");
 
-// example: current time is red(present), if curent time is 11am everything before 11am is grey(past). else everyhing after 11am is green(future). 
+// Displays values from local storage in the text boxes using the ID variables
+text9.val(textVal9);
+text10.val(textVal10);
+text11.val(textVal11);
+text12.val(textVal12);
+text1.val(textVal1);
+text2.val(textVal2);
+text3.val(textVal3);
+text4.val(textVal4);
+text5.val(textVal5);
 
-// when clicking on time block enter input from user.
-// save input to local storage when save button is clicked (when refreshed info is not erased).
-
-
-// get items from local storage and set them to variables
-let textareaVal9 = localStorage.getItem("hr-9");
-let textareaVal10 = localStorage.getItem("hr-10");
-let textareaVal11 = localStorage.getItem("hr-11");
-let textareaVal12 = localStorage.getItem("hr-12");
-let textareaVal1 = localStorage.getItem("hr-1");
-let textareaVal2 = localStorage.getItem("hr-2");
-let textareaVal3 = localStorage.getItem("hr-3");
-let textareaVal4 = localStorage.getItem("hr-4");
-let textareaVal5 = localStorage.getItem("hr-5");
-
-// assign id's to to variables
-let textarea9 = $("#hr-9");
-let textarea10 = $("#hr-10");
-let textarea11 = $("#hr-11");
-let textarea12 = $("#hr-12");
-let textarea1 = $("#hr-1");
-let textarea2 = $("#hr-2");
-let textarea3 = $("#hr-3");
-let textarea4 = $("#hr-4");
-let textarea5 = $("#hr-5");
-
-// the values from local storage are displayed in th textarea by using id variables
-textarea9.val(textareaVal9);
-textarea10.val(textareaVal10);
-textarea11.val(textareaVal11);
-textarea12.val(textareaVal12);
-textarea1.val(textareaVal1);
-textarea2.val(textareaVal2);
-textarea3.val(textareaVal3);
-textarea4.val(textareaVal4);
-textarea5.val(textareaVal5);
-
-// variable "date" holds current date.
+// Sets the variable "date" to the current date
 let date = moment().format("dddd, MMMM Do, YYYY");
 
-// display date in currentDay id 
+// Displays the date in the "currentDay" id 
 $("#currentDay").text(date);
 
-// time function
+// Initiating "time" function
 function time() {
 
-    // variable "currentHour" holds current hour.
+    // Sets variable "currentHour" to the current hour.
     let currentHour = moment().hours();
 
-    // function for each class block to ditermin is past, present, or future
+    // Function for each hour block to determine if it is in the past, present, or future
     $(".block").each(function () {
-
-        // variable "hour" holds id hour from class block and pareInt is used to chang it from a string to an integer.
         let hour = parseInt($(this).attr("id"));
 
-        // if statement to determine if in the past hour's
+        // If statement determines if the hour is in the past
         if (hour < currentHour) {
-            // adds grey to blocks
+            // Assigns "past" class to the blocks
             $(this).addClass("past");
         }
 
-        //else if statement to determine if in the present hour
+        // Else if statement determines if the hour is in the present
         else if (hour === currentHour) {
-            // removes grey to blocks
+            // Removes "past" class from the blocks
             $(this).removeClass("past");
-            // adds red to blocks
+            // Assigns "present" class to blocks
             $(this).addClass("present");
         }
 
-        // else statement to determine if in the future's
+        // Else statement determines if the hour is in the future
         else {
-            // removes grey to blocks
+            // Removes "past" class from the blocks
             $(this).removeClass("past");
-            // removes red to blocks
+            // Removes "present" class from the blocks
             $(this).removeClass("present");
-            // adds green to blocks
+            // Adds "future" class to the blocks
             $(this).addClass("future");
         }
 
@@ -87,22 +75,22 @@ function time() {
 
 };
 
-// call the funtion time()
+// Calls the "time" function
 time();
 
-// on click function
+// Event listener for "save" button click that executes save function
 $(".saveButton").on("click", function (event) {
-    // prevents refresh when saveButton is clicked
+    // Prevents refresh when saveButton is clicked
     event.preventDefault();
 
-    // variable "textarea" holds the previous sibling of saveButton which is (textarea).
-    let textarea = $(this).prev();
+    // Assigns "text" variable the previous sibling of saveButton which is "text"
+    let text = $(this).prev();
 
-    // variable "id" holds (sets variable textarea to its id)
-    let id = textarea.attr("id");
+    // Variable "id" holds (sets variable textarea to its id)
+    let id = text.attr("id");
 
-    // variable "value" holds (the value of textarea)
-    let value = textarea.val();
-    // sets items id and value in local storage
+    // Variable "value" holds (the value of textarea)
+    let value = text.val();
+    // Sets items id and value in local storage
     localStorage.setItem(id, value);
 });
