@@ -3,7 +3,7 @@
 
 # Screenshot
 
-[Day Planner](Day Planner Screenshot.PNG)
+![Day Planner Screenshot](Day_Planner_screenshot.PNG)
 
 # Description
 
